@@ -38,13 +38,13 @@ Thank you for considering contributing to Example! Please see the
 ## Licence
 
 <!-- todo: see https://choosealicense.com -->
-Example is open-sourced software licenced under the [CC0 licence][licence].
+Example is open-sourced software licenced under the [MIT license][licence].
 
 [contributing]: .github/CONTRIBUTING.md
 [curseforge]: https://curseforge.com/minecraft/mc-mods/modid
 [curseforge:files]: https://curseforge.com/minecraft/mc-mods/modid/files
 [fabric]: https://fabricmc.net/
-[licence]: https://creativecommons.org/publicdomain/zero/1.0
+[licence]: LICENSE
 [minecraft]: https://minecraft.net/
 [releases]: https://github.com/John-Paul-R/fabric-template-mod/releases
 [security]: .github/SECURITY.md

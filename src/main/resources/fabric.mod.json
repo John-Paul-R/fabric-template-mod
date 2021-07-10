@@ -12,7 +12,7 @@
     "sources": "https://github.com/John-Paul-R/fabric-template-mod",
     "issues": "https://github.com/John-Paul-R/fabric-template-mod/issues"
   },
-  "license": "CC0",
+  "license": "MIT",
   "icon": "assets/modid/icon.jpg",
   "environment": "*",
   "entrypoints": {
