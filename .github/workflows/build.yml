@@ -4,6 +4,14 @@ name: Build
 
 # On pull requests
 on:
+  push:
+    paths:
+      - '**/src/**'
+      - '**/build.gradle'
+      - '**/gradle.properties'
+      - '**/settings.gradle'
+      - .github/workflows/build.yml
+      - LICENCE
   pull_request:
     paths:
       - '**/src/**'
