@@ -1,8 +1,9 @@
-package com.example.modid;
+package dev.jpcode.modid;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DisplayName("Example")

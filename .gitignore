@@ -57,3 +57,9 @@ hs_err_pid*
 .vscode/
 .history/
 *.code-workspace
+
+# publish metadata
+changelog.md
+
+# private / environment
+.env

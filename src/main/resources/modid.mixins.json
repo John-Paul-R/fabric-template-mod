@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.example.modid.mixin",
+  "package": "dev.jpcode.modid.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [],
   "server": [],

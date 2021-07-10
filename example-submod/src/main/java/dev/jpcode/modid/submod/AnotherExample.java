@@ -1,4 +1,4 @@
-package com.example.modid.submod;
+package dev.jpcode.modid.submod;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -8,16 +8,16 @@
     "[fullname]"
   ],
   "contact": {
-    "homepage": "https://github.com/axieum/fabric-example-mod",
-    "sources": "https://github.com/axieum/fabric-example-mod",
-    "issues": "https://github.com/axieum/fabric-example-mod/issues"
+    "homepage": "https://github.com/John-Paul-R/fabric-template-mod",
+    "sources": "https://github.com/John-Paul-R/fabric-template-mod",
+    "issues": "https://github.com/John-Paul-R/fabric-template-mod/issues"
   },
   "license": "CC0",
-  "icon": "assets/modid-sub/icon.png",
+  "icon": "assets/modid-sub/icon.jpg",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.example.modid.submod.AnotherExample"
+      "dev.jpcode.modid.submod.AnotherExample"
     ]
   },
   "mixins": [

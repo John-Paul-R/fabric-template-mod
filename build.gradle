@@ -4,6 +4,7 @@ plugins {
     id 'maven-publish'
     id 'com.modrinth.minotaur' version '1.2.1'
     id 'com.matthewprenger.cursegradle' version '1.4.0'
+    id "com.github.breadmoirai.github-release" version "2.2.12"
     id 'fabric-loom' version '0.8-SNAPSHOT'
 }
 
@@ -11,10 +12,12 @@ allprojects {
     apply plugin: 'java'
     apply plugin: 'checkstyle'
     apply plugin: 'fabric-loom'
+    apply plugin: 'idea'
 
     group = project.maven_group
-    version = project.mod_version
-    archivesBaseName = "${project.mod_id}-mc${project.minecraft_version}"
+    String full_version = "${project.mod_version}-mc${project.minecraft_version}"
+    version = full_version
+    archivesBaseName = "${project.mod_id}"
 
     sourceCompatibility = targetCompatibility = JavaVersion.VERSION_16
 
@@ -27,7 +30,7 @@ allprojects {
 
         // Mods
         modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-        modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
+        modImplementation "me.lucko:fabric-permissions-api:${project.permissions_api_version}"
 
         // Code Quality
         compileOnly "org.jetbrains:annotations:${project.jetbrains_annotations_version}"
@@ -53,7 +56,7 @@ allprojects {
 
     // Add the licence to all distributions
     tasks.withType(Jar).configureEach {
-        it.from rootProject.file('LICENCE.txt')
+        it.from rootProject.file('LICENCE')
     }
 
     // Process any resources
@@ -78,49 +81,20 @@ allprojects {
     repositories {
         mavenCentral()
         maven { name 'Fabric'; url 'https://maven.fabricmc.net/' }
-        maven { name 'TerraformersMC'; url 'https://maven.terraformersmc.com/' }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+        maven { url 'https://maven.nucleoid.xyz' }
     }
 }
 
-// Define how artifacts are published to CurseForge (https://curseforge.com)
-curseforge {
-    // Set the API token from the environment
-    apiKey System.getenv('CURSEFORGE_TOKEN') ?: ''
+tasks.withType(JavaCompile).configureEach {
+    // ensure that the encoding is set to UTF-8, no matter what the system default is
+    // this fixes some edge cases with special characters not displaying correctly
+    // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
+    // If Javadoc is generated, this must be specified in that task too.
+    it.options.encoding = "UTF-8"
 
-    // Declare all projects
-    project {
-        // Set the project id
-        id = project.cf_project_id
-        // Set the release type
-        releaseType = project.version.contains('alpha') ? 'alpha' : project.version.contains('beta') ? 'beta' : 'release'
-        // Set the release notes
-        changelog = "For a list of changes, please refer to https://github.com/${project.github_repo}/releases/tag/v${project.version}"
-        // Add all supported game versions
-        project.cf_game_versions.split(',').each { addGameVersion it }
-        // Add the main artifact
-        mainArtifact(remapJar) { displayName = "${project.mod_name} v${project.version} for Minecraft ${project.minecraft_version}" }
-        // Add any additional artifacts
-        addArtifact sourcesJar
-        addArtifact jar
-        subprojects.each {
-            addArtifact it.remapJar
-            addArtifact it.sourcesJar
-            addArtifact it.jar
-        }
-        // Add any dependencies
-        relations {
-            if (project.cf_relations_required) project.cf_relations_required.split(',').each { requiredDependency it }
-            if (project.cf_relations_optional) project.cf_relations_optional.split(',').each { optionalDependency it }
-            if (project.cf_relations_embedded) project.cf_relations_embedded.split(',').each { embeddedLibrary it }
-            if (project.cf_relations_tools) project.cf_relations_tools.split(',').each { tool it }
-            if (project.cf_relations_incompatible) project.cf_relations_incompatible.split(',').each { incompatible it }
-        }
-    }
-
-    // Configure other options
-    options {
-        forgeGradleIntegration = false
-    }
+    // Minecraft 1.17 (21w19a) upwards uses Java 16.
+    it.options.release = 16
 }
 
 // Define how artifacts are published to Modrinth (https://modrinth.com)
@@ -131,9 +105,13 @@ task modrinth(type: TaskModrinthUpload) {
     group 'upload'
     allprojects.each { dependsOn it.build }
 
+    Map env = getenv()
+    onlyIf {
+        // Only attempt to run this task if the MODRINTH variable is set in .env, otherwise SKIP it
+        env.containsKey("MODRINTH")
+    }
     // Set the API token from the environment
-    token = System.getenv('MODRINTH_TOKEN') ?: ''
-    onlyIf { !token.isEmpty() }
+    token = env.get('MODRINTH_TOKEN')
 
     // Set the project id
     projectId = project.mr_project_id
@@ -165,6 +143,78 @@ task modrinth(type: TaskModrinthUpload) {
     if (project.mr_relations_incompatible) project.mr_relations_incompatible.split(',').each { addDependency it, 'incompatible' }
 }
 
+// Define how artifacts are published to CurseForge (https://curseforge.com)
+curseforge {
+    Map env = getenv()
+    // Set the API token from the environment
+    apiKey = env.get("CURSEFORGE_KEY") as String
+
+    // Declare all projects
+    project {
+        // Set the project id
+        id = project.cf_project_id
+        // Set the release type
+        releaseType = project.version.contains('alpha') ? 'alpha' : project.version.contains('beta') ? 'beta' : 'release'
+        // Set the release notes
+        changelog = "For a list of changes, please refer to https://github.com/${project.github_repo}/releases/tag/v${project.version}"
+        // Add all supported game versions
+        project.cf_game_versions.split(',').each { addGameVersion it }
+        // Add the main artifact
+        mainArtifact(remapJar) { displayName = "${project.version}" }
+        // Add any additional artifacts
+        addArtifact sourcesJar
+        addArtifact jar
+        subprojects.each {
+            addArtifact it.remapJar
+            addArtifact it.sourcesJar
+            addArtifact it.jar
+        }
+        // Add any dependencies
+        relations {
+            if (project.cf_relations_required) project.cf_relations_required.split(',').each { requiredDependency it }
+            if (project.cf_relations_optional) project.cf_relations_optional.split(',').each { optionalDependency it }
+            if (project.cf_relations_embedded) project.cf_relations_embedded.split(',').each { embeddedLibrary it }
+            if (project.cf_relations_tools) project.cf_relations_tools.split(',').each { tool it }
+            if (project.cf_relations_incompatible) project.cf_relations_incompatible.split(',').each { incompatible it }
+        }
+    }
+
+    // Configure other options
+    options {
+        forgeGradleIntegration = false
+    }
+}
+
+tasks.getByName("githubRelease").each { task -> configure(task) {
+    group = "upload"
+}}
+githubRelease {
+    Map env = getenv()
+//    group = "upload"
+//    onlyIf {
+//        env.get("GITHUB_TOKEN") != null
+//    }
+    token env.get("GITHUB_TOKEN") as String // This is your personal access token with Repo permissions
+    // You get this from your user settings > developer settings > Personal Access Tokens
+    owner project.gh_owner // default is the last part of your group. Eg group: "com.github.breadmoirai" => owner: "breadmoirai"
+    repo project.gh_repo // by default this is set to your project name
+    tagName project.version // by default this is set to "v${project.version}"
+    targetCommitish "master" // by default this is set to "master"
+    releaseName project.version // Release title, by default this is the same as the tagName
+    body getChangelog() // by default this is empty
+    draft false // by default this is false
+    prerelease false // by default this is false
+    releaseAssets jar.destinationDirectory.getAsFileTree().matching {
+        include "**/*${project.version}.jar"
+//		include "**/*${project.mod_version}-sources.jar"
+    }// this points to which files you want to upload as assets with your release
+    //jar.outputs.getFiles().asPath//
+    overwrite false // by default false; if set to true, will delete an existing release with the same tag and name
+    dryRun false // by default false; you can use this to see what actions would be taken without making a release
+    apiEndpoint "https://api.github.com" // should only change for github enterprise users
+    client // This is the okhttp client used for http requests
+}
+
 // Define how packages are published
 publishing {
     // Declare all publications
@@ -181,14 +231,38 @@ publishing {
     repositories {
         // GitHub Packages (https://pkg.github.com)
         maven {
+            Map env = getenv()
             name 'GitHub'
             url "https://maven.pkg.github.com/${project.github_repo}"
             credentials {
-                username System.getenv('GITHUB_ACTOR')
-                password System.getenv('GITHUB_TOKEN')
+                username env.get('GITHUB_ACTOR') as String
+                password env.get('GITHUB_TOKEN') as String
             }
         }
     }
+}
+
+def static getenv(path = ".env") {
+    def env = [:]
+
+    def file = new File(path)
+    if (file.exists()) {
+        file.eachLine { line ->
+            def (name, value) = line.tokenize("=")
+            env[name.trim()] = value.trim()
+        }
+    }
+    return env
+}
+
+def getChangelog() {
+    try {
+        return new File('./changelog.md').getText('UTF-8')
+
+    } catch (FileNotFoundException e) {
+        logger.warn('./changelog.md not found.')
+    }
+    return "null"
 }
 
 publish.finalizedBy tasks.curseforge, tasks.modrinth

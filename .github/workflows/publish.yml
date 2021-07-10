@@ -19,7 +19,7 @@ on:
       - '**/settings.gradle'
       - .github/workflows/publish.yml
       - .releaserc*
-      - LICENCE.txt
+      - LICENCE
 
 jobs:
   publish:
