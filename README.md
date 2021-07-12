@@ -50,6 +50,15 @@ Example is open-sourced software licenced under the [MIT license][licence].
 
 Questions? Contact me in [my Discord server][discord].
 
+# Template license note
+
+This template is available under the [CC0 dedication](https://creativecommons.org/publicdomain/zero/1.0/).
+(The MIT license file is in the mod files because it is my most-used/default license.)
+
+Feel free to copy this template as you wish.
+
+[![CC0 Badge](https://i.creativecommons.org/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)
+
 [contributing]: .github/CONTRIBUTING.md
 [curseforge]: https://curseforge.com/minecraft/mc-mods/modid
 [curseforge:files]: https://www.curseforge.com/minecraft/mc-mods/essential-commands/files/all
