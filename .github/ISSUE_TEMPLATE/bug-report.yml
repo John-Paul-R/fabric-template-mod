@@ -27,7 +27,8 @@ body:
     validations:
       required: true
 
-  - type: textarea
+  - type: input
+    placeholder: 1.0.3-mc1.17
     attributes:
       label: Version
       description: Please provide the version of the mod you're running. This can be found in the file name of the mod jar.

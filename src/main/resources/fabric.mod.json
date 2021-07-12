@@ -5,7 +5,13 @@
   "name": "${name}",
   "description": "Lorem ipsum dolor sit amet",
   "authors": [
-    "[fullname]"
+    {
+      "name": "John Paul R.",
+      "contact": {
+        "homepage": "https://www.jpcode.dev",
+        "discord": "https://discord.jpcode.dev"
+      }
+    }
   ],
   "contact": {
     "homepage": "https://github.com/John-Paul-R/fabric-template-mod",

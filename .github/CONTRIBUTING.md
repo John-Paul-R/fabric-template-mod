@@ -5,8 +5,8 @@
 Discussions are a great way to ask for help without undergoing the formalities
 of opening an issue. You are encouraged to use discussions where appropriate.
 
-* With a single question, you show where contributors can improve the user
-  experience
+Questions are encouraged, as they, show where contributors can work to improve the user
+experience
 
 ## Issues
 
@@ -37,9 +37,7 @@ You should justify the way your change solves the problem, i.e. why this change
 is better. It may also be worth mentioning any alternate solutions considered
 but discarded.
 
-#### 3. Is it of quality
-
-There are no grammatical or spelling mistakes - it reads well.
+#### 3. Does it stand on its own
 
 Try to make sure your explanation can be understood without external resources.
 
@@ -127,8 +125,6 @@ new releases.
 
 When new commits make their way into one of the release branches outlined in
 the [Branching Strategy](#branching-strategy), a
-GitHub [workflow][workflow:publish] is triggered. This workflow in turn
-executes [semantic-release][semantic-release].
 
 ## Code Style
 
@@ -152,4 +148,3 @@ this functionality to your IDE.
 [semantic-release]: https://github.com/semantic-release/semantic-release
 [semantic-release:recipes]: https://github.com/semantic-release/semantic-release/blob/v17.4.4/docs/recipes
 [semver]: https://semver.org/
-[workflow:publish]: workflows/publish.yml
