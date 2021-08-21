@@ -22,10 +22,10 @@ body:
 
   - type: textarea
     attributes:
-      label: Steps/models to reproduce
+      label: Steps/models to reproduce (if known)
       description: This may include a screenshot, a video, or detailed instructions to help reconstruct the issue.
     validations:
-      required: true
+      required: false
 
   - type: input
     attributes:

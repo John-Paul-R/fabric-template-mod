@@ -108,7 +108,7 @@ task modrinth(type: TaskModrinthUpload) {
     Map env = getenv()
     onlyIf {
         // Only attempt to run this task if the MODRINTH variable is set in .env, otherwise SKIP it
-        env.containsKey("MODRINTH")
+        env.containsKey("MODRINTH_TOKEN")
     }
     // Set the API token from the environment
     token = env.get('MODRINTH_TOKEN')
@@ -147,7 +147,7 @@ task modrinth(type: TaskModrinthUpload) {
 curseforge {
     Map env = getenv()
     // Set the API token from the environment
-    apiKey = env.get("CURSEFORGE_KEY") as String
+    apiKey = env.get("CURSEFORGE_TOKEN") as String
 
     // Declare all projects
     project {
