@@ -1,6 +1,6 @@
 <div align="center">
 
-<img alt="ExampleModName Icon" src="src/main/resources/assets/modid/icon.jpg" width="128">
+<img alt="ExampleModName Icon" src="src/main/resources/assets/examplemodname/icon.jpg" width="128">
 
 # Fabric ExampleModName Mod
 
@@ -59,7 +59,7 @@ Feel free to copy this template as you wish.
 [![CC0 Badge](https://i.creativecommons.org/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)
 
 [contributing]: .github/CONTRIBUTING.md
-[curseforge]: https://curseforge.com/minecraft/mc-mods/modid
+[curseforge]: https://curseforge.com/minecraft/mc-mods/examplemodname
 [curseforge:files]: https://www.curseforge.com/minecraft/mc-mods/essential-commands/files/all
 [modrinth:files]: https://modrinth.com/mod/essential-commands/versions
 [fabric]: https://fabricmc.net/

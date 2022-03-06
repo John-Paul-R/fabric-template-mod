@@ -1,4 +1,4 @@
-package dev.jpcode.modid;
+package dev.jpcode.examplemodname;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;

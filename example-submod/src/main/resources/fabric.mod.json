@@ -19,15 +19,15 @@
     "issues": "https://github.com/John-Paul-R/fabric-template-mod/issues"
   },
   "license": "MIT",
-  "icon": "assets/modid-sub/icon.png",
+  "icon": "assets/examplemodname-sub/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.jpcode.modid.submod.AnotherExample"
+      "dev.jpcode.examplemodname.submod.AnotherExample"
     ]
   },
   "mixins": [
-    "modid-sub.mixins.json"
+    "examplemodname-sub.mixins.json"
   ],
   "depends": {
     "java": ">=17",
@@ -37,7 +37,7 @@
   },
   "custom": {
     "modmenu": {
-      "parent": "modid",
+      "parent": "examplemodname",
       "badges": ["library"]
     }
   }

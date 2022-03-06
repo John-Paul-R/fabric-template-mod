@@ -1,4 +1,4 @@
-package dev.jpcode.modid.submod.mixin;
+package dev.jpcode.examplemodname.submod.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.client.gui.screen.TitleScreen;
 
-import static dev.jpcode.modid.submod.AnotherExample.LOGGER;
+import static dev.jpcode.examplemodname.submod.AnotherExample.LOGGER;
 
 @Mixin(TitleScreen.class)
 public class TitleScreenMixin
