@@ -1,8 +1,8 @@
 <div align="center">
 
-<img alt="Example Icon" src="src/main/resources/assets/modid/icon.jpg" width="128">
+<img alt="ExampleModName Icon" src="src/main/resources/assets/modid/icon.jpg" width="128">
 
-# Fabric Example Mod
+# Fabric ExampleModName Mod
 
 Lorem ipsum dolor sit amet
 
@@ -17,7 +17,7 @@ Lorem ipsum dolor sit amet
 
 </div>
 
-Example is a **Minecraft mod** that lorem ipsum dolor sit amet. Ut mi lectus,
+ExampleModName is a **Minecraft mod** that lorem ipsum dolor sit amet. Ut mi lectus,
 egestas a justo nec, hendrerit tempus ipsum. Nulla blandit porta sodales. Nulla
 accumsan ipsum vitae tortor facilisis, id malesuada enim sagittis.
 
@@ -37,13 +37,13 @@ doloremque laudantium.
 
 ## Contributing
 
-Thank you for considering contributing to Example! Please see the
+Thank you for considering contributing to ExampleModName! Please see the
 [Contribution Guidelines][contributing].
 
 ## Licence
 
 <!-- todo: see https://choosealicense.com -->
-Example is open-sourced software licenced under the [MIT license][licence].
+ExampleModName is open-sourced software licenced under the [MIT license][licence].
 
 ## Discord
 

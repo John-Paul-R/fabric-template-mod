@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@DisplayName("Example")
+@DisplayName("ExampleModName")
 public class ExampleTest
 {
     @Test
@@ -14,6 +14,6 @@ public class ExampleTest
     @Disabled("for demonstration purposes only")
     void shouldHaveLogger()
     {
-        assertNotNull(Example.LOGGER);
+        assertNotNull(ExampleModName.LOGGER);
     }
 }

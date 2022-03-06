@@ -23,7 +23,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.jpcode.modid.Example"
+      "dev.jpcode.modid.ExampleModName"
     ]
   },
   "mixins": [
