@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DisplayName("ExampleModName")
-public class ExampleTest
+public class ExampleModNameTest
 {
     @Test
     @DisplayName("A logger is available")
